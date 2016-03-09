@@ -82,8 +82,6 @@ AppRegistry.registerComponent('test', () => test);
 
 ##Properties
 
-Any [View property](http://facebook.github.io/react-native/docs/view.html) and the following:
-
 | Prop | Description | Default |
 |---|---|---|
 |**`title`**|title. |*None*|
