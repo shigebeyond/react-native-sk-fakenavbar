@@ -1,0 +1,24 @@
+{
+  "name": "react-native-sk-fakenavbar",
+  "version": "1.0.0",
+  "description": "Fake navigation bar, simulate NavigatorNavigationBar component.",
+  "main": "FakeNavBar.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/shigebeyond/react-native-sk-fakenavbar.git"
+  },
+  "keywords": [
+    "react-native",
+    "navigationbar",
+    "simulate-navigationbar"
+  ],
+  "author": "shigebeyond",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/shigebeyond/react-native-sk-fakenavbar/issues"
+  },
+  "homepage": "https://github.com/shigebeyond/react-native-sk-fakenavbar#readme"
+}
