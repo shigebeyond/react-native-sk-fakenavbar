@@ -10,46 +10,51 @@ var {
     PropTypes,
 } = React;
 
-var com = require('./common'),
-    Icon = require('react-native-vector-icons/FontAwesome');
+var com = require('./common');
 
-// 在参与页+报告页+消息页, 显示模拟导航栏
+// 显示模拟导航栏
 var FakeNavBar = React.createClass({
   propTypes: {
-    navigator: PropTypes.object.isRequired,
-    leftButtonIcon: PropTypes.any,
+    leftButtonTitle: PropTypes.any, // string or <Text> or <Icon>
+    leftButtonIcon: Image.propTypes.source,
     onLeftButtonPress: PropTypes.func,
-    rightButtonIcon: PropTypes.any,
+    rightButtonTitle: PropTypes.any, // string or <Text> or <Icon>
+    rightButtonIcon: Image.propTypes.source,
     onRightButtonPress: PropTypes.func,
-  },
-  // 渲染按钮图标
-  renderIcon: function(icon){
-    // 如果是字符串，则使用字体图标
-    if(typeof icon === 'string'){
-      return (<Icon style={styles.icon} name={icon} />)
-    }
-    // 否则，使用普通图片
-    return (<Image source={icon}/>)
   },
   // 渲染左键按钮
   renderLeftButton: function(){
-    if(!this.props.leftButtonIcon)
-      return (<View />)
+    var btn;
+    var {leftButtonTitle, leftButtonIcon} = this.props
+    if(leftButtonTitle){
+      btn = (typeof leftButtonTitle === 'string') ? (<Text style={styles.title}>{leftButtonTitle}</Text>) : leftButtonTitle;
+    }else if(leftButtonIcon){
+      btn = (<Image source={this.props.leftButtonIcon}/>);
+    }else{
+      return (<View />);
+    }
 
     return (
       <TouchableOpacity activeOpacity={0.5} onPress={this.props.onLeftButtonPress}>
-        {this.renderIcon(this.props.leftButtonIcon)}
+        {btn}
       </TouchableOpacity>
     )
   },
   // 渲染右键按钮
   renderRightButton: function(){
-    if(!this.props.rightButtonIcon)
-      return (<View />)
+    var btn;
+    var {rightButtonTitle, rightButtonIcon} = this.props
+    if(rightButtonTitle){
+      btn = (typeof rightButtonTitle === 'string') ? (<Text style={styles.title}>{rightButtonTitle}</Text>) : rightButtonTitle;
+    }else if(rightButtonIcon){
+      btn = (<Image source={this.props.rightButtonIcon}/>);
+    }else{
+      return (<View />);
+    }
 
     return (
       <TouchableOpacity activeOpacity={0.5} onPress={this.props.onRightButtonPress}>
-        {this.renderIcon(this.props.rightButtonIcon)}
+        {btn}
       </TouchableOpacity>
     )
   },
@@ -59,7 +64,7 @@ var FakeNavBar = React.createClass({
         {/* 导航栏左键按钮 */}
         {this.renderLeftButton()}
         {/* 标题 */}
-        <Text style={styles.title}>
+        <Text style={[styles.title, {fontWeight: 'bold'}]}>
           {this.props.title}
         </Text>
         {/* 导航栏右键按钮 */}
@@ -90,13 +95,7 @@ var styles = StyleSheet.create({
   title: {
     color: 'white',
     fontSize: 16,
-    fontWeight: 'bold',
   },
-  icon: {
-    color: 'white',
-    fontSize: 21,
-    fontWeight: 'bold',
-  }
 });
 
 module.exports = FakeNavBar;
